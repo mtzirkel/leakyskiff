@@ -1,0 +1,46 @@
+{% extends 'base.html' %}
+
+{% load static %}
+
+{% block javascript %}
+  <script src="{% static 'js/question.js' %}"></script>
+{% endblock %}
+
+{% block content %}
+  <h1 class="page-header">Questions</h1>
+
+  <!-- BUTTON TO TRIGGER THE ACTION -->
+  <p>
+    <p>
+    <button type="button"
+            class="btn btn-primary js-create-question"
+            data-url="{% url 'question-list' quiz_id %}">
+      <span class="glyphicon glyphicon-plus"></span>
+      New MC-Question
+    </button>
+  </p>
+  </p>
+
+  <h1 class="page-header">Questions</h1>
+  <table class="table" id="question-table">
+    <thead>
+      <tr>
+        <th>#</th>
+        <th>Title</th>        
+        <th>Question Type</th>        
+        <th>Points</th>
+        <th>In Quiz</th>
+      </tr>
+    </thead>
+    <tbody>
+    	{% include 'quiz/partial_question_list.html' %}
+    </tbody>
+  </table>
+
+  <div class="modal fade" id="modal-question">
+    <div class="modal-dialog">
+      <div class="modal-content">
+      </div>
+    </div>
+{% endblock %}
+

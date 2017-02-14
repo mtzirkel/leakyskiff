@@ -1,0 +1,20 @@
+% extends "base.html" %}
+
+
+
+
+{% block title %} {{ quiz.title }} {% endblock %}
+{% block description %} {{ quiz.title }} - {{ quiz.description }} {% endblock %}
+
+{% block content %}
+
+{{ MCQuestion.question_text}}
+
+
+
+
+{% endblock %}
+
+{% block content %}
+
+for choice in MCChoice 

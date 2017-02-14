@@ -1,0 +1,31 @@
+{% extends "base.html" %}
+
+
+{% block content %}
+  <h1> Welcome to the your boat {{user.username}}. This is the first one built but I have confidence with some work she will float! </h1>
+  {% if user.is_anonymous%}
+    <p> Welcome to the quiz engine, if you would like to take a quiz please <a href="/accounts/login/">login</a> or <a href="/accounts/register/">register</a> to take or create quizzes!
+  {%endif%}
+  <ul><p>The 5 most recent quizzes</p>
+  </ul>
+  <ul>
+    <p>Welcome back {{user.username}}, your five most recent quizzes are listed below.</p>
+      
+  <table>
+    <tr>
+        <th>Quiz Title</th>
+        <th>Add Question</th>
+        <th>Date Created</th>
+    </tr>
+    {% for quiz in quizlist %}
+    <tr> 
+        <td>{{quiz.title}} </td>
+        <td>- <a href="/quizquestions/{{quiz.pk}}/">Add Question</a></td>
+        <td>{{quiz.created_date}}</td>
+    </tr>
+    {% endfor %}
+  </table>
+
+        <li><a href="/quiz/add/">Create a new quiz</a></li>
+  </ul>
+{%endblock%}

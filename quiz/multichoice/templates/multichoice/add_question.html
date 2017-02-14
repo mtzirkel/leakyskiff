@@ -1,0 +1,62 @@
+{%extends 'base.html'%}
+
+{% block content %}
+  {% if prev_question %}
+    <h2>{{question.quetion}} added successfuly!</h2>
+    <!-- Display the previous question and a link to edit if errors -->
+  {%endif%}
+  <h1> Add a question to </h1>
+  <h2> Quiz {{ quizlist.pk }} </h2>
+    <form method="POST" action="">{% csrf_token %}
+          <table width="100%">
+            <col style="width:60%">
+            <col style="width:20%">
+            
+            <tr>
+                <th>Question Text</th>
+                <th>Point Value{{formset.point_value}}</th>
+                <th>In Quiz{{formset.inquiz}}</th>
+                
+            </tr>
+            </table>
+          
+              {{ formset.question_text }}
+              <table width="100%">
+                <col style="width:60%">
+                <col style="width:40%">
+
+                <tr>
+                  <td>Answer a:</td>
+                  <td>Mark Correct</td>
+                </tr>  
+                  <td>{{formset.answer_a}}</td>
+                  <td>{{formset.a_is_correct}}</td>
+                </tr>
+                <tr>
+                  <td>Answer b:</td>
+                  <td></td>
+                </tr>
+                <tr>
+                  <td>{{formset.answer_b}}</td>
+                  <td>{{formset.b_is_correct}}</td>
+                </tr>  
+                  <td>Answer c:</td>
+                  <td></td>
+                </tr>
+                <tr>
+                  <td>{{formset.answer_c}}</td>
+                  <td>{{formset.c_is_correct}}</td>
+                </tr>
+                <tr>
+                  <td>Answer d:</td>
+                  <td></td>
+                </tr>      
+                <tr>
+                  <td>{{formset.answer_d}}</td>
+                  <td>{{formset.d_is_correct}}</td>
+                </tr>          
+              </table>    
+        <button type="submit" class="save btn btn-default">Save</button>
+    </form>
+  <a href="/quizlist/">Finished Adding Questions</a>
+{%endblock%}
