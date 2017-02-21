@@ -2,14 +2,14 @@
 {% for question in questions %}
   <tr>
     <td>{{ question.id }}</td>
-    <td>{{ question.question_text }}</td>          
+    <td>{{ question.question_text }}</td>
     <td>MC-Question</td>
     <td>{{ question.point_value }}</td>
     <td>{{ question.inquiz }}</td>
     <td>
       <button type="button"
               class="btn btn-warning btn-sm js-update-question"
-              data-url="{% url 'question-update' quiz_id pk %}">
+              data-url="{% url 'question-update' question.inquiz.pk question.pk %}">
         <span class="glyphicon glyphicon-pencil"></span> Edit
       </button>
     </td>
