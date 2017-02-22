@@ -31,10 +31,10 @@ urlpatterns = [
     url(r'^quiz/$', login_views.home),
     url(r'^quizlist/$', quiz_views.teacher_quizlist),
     url(r'^squizlist/$', quiz_views.student_quizlist),
-    url(r'^(?P<quiz_id>[0-9]+)/add_question/$', multichoice_views.add_mcquestion),#old not as good way to add question
-    url(r'^quizquestions/(?P<quiz_id>[0-9]+)/', quiz_views.question_list, name='question-list'),#new way to add question
-    url(r'^quizquestions/(?P<quiz_id>[0-9]+)/questioncreate/$', quiz_views.question_create, name='question-create'), #new way to add question
-    url(r'^quizquestions/(?P<quiz_id>[0-9]+)/question/(?P<pk>[0-9]+)/update/$', quiz_views.question_update, name='question-update'),
+    url(r'^(?P<quiz_id>\d+)/add_question/$', multichoice_views.add_mcquestion),#old not as good way to add question
+    url(r'^quizquestions/(?P<quiz_id>\d+)/$', quiz_views.question_list, name='question-list'),#new way to add question
+    url(r'^quizquestions/(?P<quiz_id>\d+)/questioncreate/$', quiz_views.question_create, name='question-create'), #new way to add question
+    url(r'^quizquestions/(?P<quiz_id>\d+)/question/(?P<pk>[0-9]+)/update/$', quiz_views.question_update, name='question-update'),
 ]
 
 

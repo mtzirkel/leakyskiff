@@ -14,7 +14,7 @@
     <p>
     <button type="button"
             class="btn btn-primary js-create-question"
-            data-url="{% url 'question-list' quiz_id %}">
+            data-url="{% url 'question-create' quiz_id %}">
       <span class="glyphicon glyphicon-plus"></span>
       New MC-Question
     </button>
@@ -26,8 +26,8 @@
     <thead>
       <tr>
         <th>#</th>
-        <th>Title</th>        
-        <th>Question Type</th>        
+        <th>Title</th>
+        <th>Question Type</th>
         <th>Points</th>
         <th>In Quiz</th>
       </tr>
@@ -42,5 +42,6 @@
       <div class="modal-content">
       </div>
     </div>
+  </div>
 {% endblock %}
 

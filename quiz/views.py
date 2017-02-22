@@ -68,40 +68,44 @@ def question_list(request, quiz_id):
 #     return JsonResponse(data)
 
 
-def save_question_form(request, form, template_name):
+def save_question_form(request, quiz, form, template_name):
     data = dict()
     if request.method == 'POST':
         if form.is_valid():
-            form.save()
+            question = form.save(commit=False)
+            question.inquiz = quiz
+            question.save()
             data['form_is_valid'] = True
-            questions = Question.objects.filter(inquiz_id=quiz_id)
+            questions = quiz.question_set.all()
             data['html_question_list'] = render_to_string(
-                'quiz/partial_quiz_list.html', {
+                'quiz/partial_question_list.html', {
                     'questions': questions})
         else:
             data['form_is_valid'] = False
-    context = {'form': form}
+    context = {'quiz': quiz, 'form': form}
     data['html_form'] = render_to_string(template_name, context,
                                          request=request)
     return JsonResponse(data)
 
 
-def question_create(request):
+def question_create(request, quiz_id):
+    quiz = get_object_or_404(Quiz, pk=quiz_id)
     if request.method == 'POST':
         form = MCQuestionForm(request.POST)
     else:
         form = MCQuestionForm()
-    return save_question_form(request, form,
+    return save_question_form(request, quiz, form,
                               'quiz/partial_question_create.html')
 
 
 def question_update(request, quiz_id, pk):
-    book = get_object_or_404(Question, pk=pk)
+    quiz = get_object_or_404(Quiz, pk=quiz_id)
+    question = get_object_or_404(Question, pk=pk)
     if request.method == 'POST':
-        form = MCQuestionForm(request.POST, instance=book)
+        form = MCQuestionForm(request.POST, instance=question)
     else:
-        form = MCQuestionForm(instance=book)
-    return save_question_form(request, form,
+        form = MCQuestionForm(instance=question)
+    return save_question_form(request, quiz, form,
                               'quiz/partial_book_update.html')
 
 
