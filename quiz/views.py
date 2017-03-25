@@ -106,7 +106,7 @@ def question_update(request, quiz_id, pk):
     else:
         form = MCQuestionForm(instance=question)
     return save_question_form(request, quiz, form,
-                              'quiz/partial_book_update.html')
+                              'quiz/partial_question_update.html')
 
 
 def student_quizlist(request):
