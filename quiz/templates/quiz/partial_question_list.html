@@ -12,6 +12,11 @@
               data-url="{% url 'question-update' question.inquiz.pk question.pk %}">
         <span class="glyphicon glyphicon-pencil"></span> Edit
       </button>
+      <button type="button"
+              class="btn btn-danger btn-sm js-delete-question"
+              data-url="{% url 'question-delete' question.inquiz.pk question.pk %}">
+        <span class="glyphicon glyphicon-trash"></span> Delete
+      </button>
     </td>
   </tr>
 {% empty %}

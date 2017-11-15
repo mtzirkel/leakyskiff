@@ -48,6 +48,10 @@ $(function () {
   $("#question-table").on("click", ".js-update-question", loadForm);
   $("#modal-question").on("submit", ".js-question-update-form", saveForm);
 
+  // Delete book
+  $("#question-table").on("click", ".js-delete-question", loadForm);
+  $("#modal-question").on("submit", ".js-question-delete-form", saveForm);
+
 });
 
 

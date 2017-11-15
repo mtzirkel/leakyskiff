@@ -109,6 +109,24 @@ def question_update(request, quiz_id, pk):
                               'quiz/partial_question_update.html')
 
 
+def question_delete(request, quiz_id, pk):
+    question = get_object_or_404(Question, pk=pk)
+    data = dict()
+    if request.method == 'POST':
+        question.delete()
+        data['form_is_valid'] = True  # This is just to play along with the existing code
+        questions = Question.objects.all()
+        data['html_question_list'] = render_to_string('quiz/partial_question_delete.html', {
+            'questions': questions
+        })
+    else:
+        context = {'question': question}
+        data['html_form'] = render_to_string('quiz/partial_question_delete.html', 
+            context,
+            request=request,
+        )
+    return JsonResponse(data)
+
 def student_quizlist(request):
     quizl = Quiz.objects.all().order_by('-pk')
     return render(request, 'quiz/student_quiz_list.html', {'quizlist': quizl})

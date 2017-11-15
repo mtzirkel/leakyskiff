@@ -35,6 +35,6 @@ urlpatterns = [
     url(r'^quizquestions/(?P<quiz_id>\d+)/$', quiz_views.question_list, name='question-list'),#new way to add question
     url(r'^quizquestions/(?P<quiz_id>\d+)/questioncreate/$', quiz_views.question_create, name='question-create'), #new way to add question
     url(r'^quizquestions/(?P<quiz_id>\d+)/question/(?P<pk>[0-9]+)/update/$', quiz_views.question_update, name='question-update'),
+    url(r'^quizquestions/(?P<quiz_id>\d+)/question/(?P<pk>[0-9]+)/delete/$', quiz_views.question_delete, name='question-delete'),
 ]
-
 
